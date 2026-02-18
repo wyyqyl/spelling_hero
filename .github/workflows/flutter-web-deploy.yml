@@ -62,6 +62,9 @@ jobs:
             echo "href=/${REPO_NAME}/" >> $GITHUB_OUTPUT
           fi
 
+      - name: Run Code Generation
+        run: dart run build_runner build --delete-conflicting-outputs
+
       # Build the app using the calculated href
       - name: Build Web
         run: flutter build web --release --base-href "${{ steps.base_href.outputs.href }}"
